@@ -9,6 +9,7 @@ const API_URL = 'https://products-api-01.herokuapp.com/api/products';
 function App() {
 
   const [products, setProducts] = useState([]);
+  const [input, setInput] = useState('');
 
   // Fetch API data on page load
   useEffect(() => {
@@ -33,9 +34,8 @@ function App() {
 
         <Route path="/" exact>
           {/* Search Box */}
-          <form>
-            <input type="text" name="Search" placeholder="Search" />
-          </form>
+          <input type="text" name="Search" placeholder="Search" onChange={(ev) => setInput(ev.target.value)} />
+          <span>{input}</span>
 
           {/* Product Grid */}
           <ul className="product-grid">
@@ -51,6 +51,7 @@ function App() {
           </ul>
         </Route>
 
+        {/* Product Details */}
         <Route path="/product/:id">
           <Product products={products} />
         </Route>
