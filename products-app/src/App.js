@@ -23,26 +23,32 @@ function App() {
 
       {/* Header */}
       <header>
-        <h1>ProductsApp</h1>
+        <Link to="/">
+          <h1>ProductsApp</h1>
+        </Link>
       </header>
 
       <main>
 
-        {/* Search Box */}
-        <form>
-          <input type="text" name="Search" placeholder="Search" />
-        </form>
+        <Route path="/" exact>
+          {/* Search Box */}
+          <form>
+            <input type="text" name="Search" placeholder="Search" />
+          </form>
 
-        {/* Product Grid */}
-        <ul className="product-grid">
-          {products.map((product) => (
-          <li>
-            <img src={product.imgURL} width="100" alt={product.name} />
-            <h3>{product.name}</h3>
-            <span>{product.price}</span>
-          </li>
-          ))}
-        </ul>
+          {/* Product Grid */}
+          <ul className="product-grid">
+            {products.map((product) => (
+              <Link to={`/product/${product._id}`}>
+                <li key={product._id}>
+                  <img src={product.imgURL} width="100" alt={product.name} />
+                  <h3>{product.name}</h3>
+                  <span>{product.price}</span>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </Route>
 
       </main>
 
