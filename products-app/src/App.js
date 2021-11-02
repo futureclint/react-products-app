@@ -8,6 +8,7 @@ const API_URL = 'https://products-api-01.herokuapp.com/api/products';
 
 function App() {
 
+  // Arrays for all products and filtered products
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -46,37 +47,42 @@ function App() {
 
       {/* Header */}
       <header>
-        <Link to="/">
-          <h1>ProductsApp</h1>
-        </Link>
+        <div className="page-wrapper">
+          <Link to="/">
+            <h1>ProductsApp</h1>
+          </Link>
+        </div>
       </header>
 
       <main>
+        <div className="page-wrapper">
 
-        <Route path="/" exact>
-          {/* Search Box */}
-          {/* When value of entered text changes pass it to the handleSearch function */}
-          <input type="text" name="Search" placeholder="Search" onChange={(event) => handleSearch(event)} />
+          {/* Home Page */}
+          <Route path="/" exact>
+            {/* Search Box */}
+            {/* When value of entered text changes pass it to the handleSearch function */}
+            <input type="text" name="Search" placeholder="Search" onChange={(event) => handleSearch(event)} />
 
-          {/* Product Grid */}
-          <ul className="product-grid">
-            {filteredProducts.map((product, index) => (
-              <li key={product._id}>
-                <Link to={`/product/${product._id}`}>
-                  <img src={product.imgURL} width="100" alt={product.name} />
-                  <h3>{product.name}</h3>
-                  <span>{product.price}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Route>
+            {/* Product Grid */}
+            <ul className="product-grid">
+              {filteredProducts.map((product, index) => (
+                <li key={product._id}>
+                  <Link to={`/product/${product._id}`}>
+                    <img src={product.imgURL} alt={product.name} />
+                    <h3 className="product-grid-text">{product.name}</h3>
+                    <span className="product-grid-text">{product.price}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Route>
 
-        {/* Product Details */}
-        <Route path="/product/:id">
-          <Product products={products} />
-        </Route>
+          {/* Product Detail Page */}
+          <Route path="/product/:id">
+            <Product products={products} />
+          </Route>
 
+        </div>
       </main>
 
     </div>

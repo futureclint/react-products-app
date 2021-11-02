@@ -1,12 +1,115 @@
+/* App ---------------------------------------------------------------------- */
+
 body {
-  max-width: 600px;
+  width: 100vw;
+}
+main {
+  width: 100vw;
+}
+.page-wrapper {
+  width: 90vw;
   margin: 0 auto;
 }
 
+/* Header ------------------------------------------------------------------- */
+
+header {
+  border-bottom: 1px solid lightgray;
+}
+header .page-wrapper {
+  width: 82vw; /* A little smaller than the page */
+}
+header a {
+  color: black;
+  text-decoration: none;
+}
+
+/* Search Box --------------------------------------------------------------- */
+
+input[type='text'] {
+  display: block;
+  width: 80vw;
+  padding: 10px 15px;
+  margin: 80px auto 60px auto;
+  border: 1px solid lightgray;
+  font-size: 18px;
+}
+
+/* Product Grid ------------------------------------------------------------- */
+
 .product-grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
   padding: 0;
   list-style-type: none;
 }
 .product-grid li {
-  outline: 1px solid lightgray;
+  margin: 20px;
+}
+.product-grid li a {
+  display: block;
+  padding: 20px; /* expand this element to fill container */
+  border: 1px solid lightgray;
+  color: black;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03); /* ok leave a subtle one always on */
+  transition: transform 0.1s ease-out,
+              box-shadow 0.1s ease-out;
+}
+.product-grid li a:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15); /* add shadow only on hover */
+  transform: scale(1.05);
+}
+.product-grid img {
+  display: block;
+  width: 300px;
+  height: auto;
+}
+.product-grid-text {
+  display: block;
+  /* NOTE: it's supposed to be centered according to the design and the
+     below will do it (tested), but it looks better left-aligned */
+  /* text-align: center;*/
+}
+
+/* Product Detail ----------------------------------------------------------- */
+
+.product {
+  display: flex;
+  flex-flow: row nowrap;
+  max-width: 1000px;
+  margin: 100px auto;
+}
+/* NOTE: Our example skews the image by making the image itself a flex child and
+   wrapping the image and making that the flex child prevents that */
+.product-image img{
+  display: block;
+  width: 500px;
+  height: auto; /* force prevent skewing image */
+  margin: 0 auto;
+}
+.product-info {
+  padding: 30px;
+  border: 1px dashed purple;
+}
+.product-info h2 {
+  font-size: 32px;
+}
+.product-info span {
+  font-size: 24px;
+}
+.product-info p {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@media (max-width: 850px) {
+  .product {
+    flex-flow: column nowrap; /* stack on narrow widths */
+  }
+  .product-image img {
+    width: 100%; /* force image to just take up remaining space */
+    height: auto; /* force prevent skewing image */
+  }
 }

@@ -8,15 +8,19 @@ function Product ({products}) {
   const product = products.find((product) => product._id === id);
 
   return (
-    <div className="product">
+    <div>
       { product ?
-        <div className="product-info">
-          <img src={product.imgURL} width="200" alt={product.name} />
-          <h2>{product.name}</h2>
-          <span>{product.price}</span>
-          <p>{product.description}</p>
+        <div className="product">
+          <div className="product-image">
+            <img src={product.imgURL} width="200" alt={product.name} />
+          </div>
+          <div className="product-info">
+            <h2>{product.name}</h2>
+            <span>${product.price}</span>
+            <p>{product.description}</p>
+          </div>
         </div>
-        : <em>Loading</em>
+        : <em>Something went wrong</em>
       }
     </div>
   );
